@@ -3,7 +3,7 @@
 use soroban_sdk::{contract, contractimpl, Env};
 
 mod error;
-mod types;
+pub mod types;
 
 use types::{DataKey, MilestoneStatus, ProgramStatus};
 
