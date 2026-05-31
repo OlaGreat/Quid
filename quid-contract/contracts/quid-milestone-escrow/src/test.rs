@@ -94,3 +94,12 @@ fn test_create_program_rejects_zero_amount() {
 
     let _ = client.create_program(&sponsor, &recipient, &token_address, &0, &None, &None);
 }
+
+#[test]
+#[should_panic(expected = "Error(Contract, #3)")]
+fn test_get_program_not_found() {
+    let (env, contract_id, _sponsor, _token_address) = setup_test_env();
+    let client = QuidMilestoneEscrowContractClient::new(&env, &contract_id);
+
+    let _ = client.get_program(&999);
+}
