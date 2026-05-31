@@ -10,6 +10,16 @@ pub enum ProgramStatus {
     Cancelled,
 }
 
+#[derive(Clone, Debug, Default, PartialEq, Eq, Copy)]
+#[contracttype]
+pub enum MilestoneStatus {
+    #[default]
+    Pending,
+    Approved,
+    Released,
+    Cancelled,
+}
+
 #[contracttype]
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct Program {
@@ -25,4 +35,23 @@ pub struct Program {
     pub metadata_cid: Option<String>,
     pub created_at: u64,
     pub status: ProgramStatus,
+}
+
+#[contracttype]
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct Milestone {
+    pub id: u64,
+    pub program_id: u64,
+    pub title: String,
+    pub amount: i128,
+    pub due_at: u64,
+    pub metadata_cid: String,
+    pub status: MilestoneStatus,
+}
+
+#[contracttype]
+pub enum DataKey {
+    Program(u64),
+    Milestone(u64, u64),
+    ProgramCount,
 }
