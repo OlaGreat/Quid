@@ -159,7 +159,7 @@ impl QuidMilestoneEscrowContract {
         env.storage()
             .persistent()
             .get(&DataKey::Milestone(program_id, milestone_id))
-            .ok_or(MilestoneEscrowError::InvalidState)
+            .ok_or(MilestoneEscrowError::MilestoneNotFound)
     }
 
     pub fn get_program_status(env: Env) -> ProgramStatus {

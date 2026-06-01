@@ -155,6 +155,15 @@ fn test_add_milestone_rejects_over_allocation() {
 }
 
 #[test]
+#[should_panic(expected = "Error(Contract, #4)")]
+fn test_get_milestone_not_found() {
+    let (env, contract_id, _sponsor, _token_address) = setup_test_env();
+    let client = QuidMilestoneEscrowContractClient::new(&env, &contract_id);
+
+    let _ = client.get_milestone(&999, &1);
+}
+
+#[test]
 #[should_panic(expected = "Error(Contract, #2)")]
 fn test_create_program_rejects_zero_amount() {
     let (env, contract_id, sponsor, token_address) = setup_test_env();
